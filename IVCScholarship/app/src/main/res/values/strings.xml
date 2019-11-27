@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">IVC Scholarship</string>
+
+    <string name="ivc_address">Liberty Centre, Liberty Estate, \nIndependence Layout Enugu, Nigeria.</string>
+    <string name="ivc_phone"><a href="tel:+2348034044440">+234 803 404 4440</a></string>
+    <string name="ivc_email"><a href="mailto:admin@ivcscholarship.org">admin@ivcscholarship.org</a></string>
+    <string name="ivc_academic_scholarship">Academic Scholarship</string>
+    <string name="ivc_vocational_scholarship">Vocational Scholarship</string>
+    <string name="ivc_entrepreneurial_scholarship">Entrepreneurial Scholarship</string>
+    <string name="ivc_wallet">IVC Wallet</string>
+
+    <string name="ivc_contact_us">Contact Us</string>
+
+    <!--User Details-->
+    <string name="user_name">Full Name</string>
+    <string name="user_email">Email</string>
+    <string name="user_address">Residential Address</string>
+    <string name="user_LGA">LGA</string>
+    <string name="user_DOB">Date Of Birth</string>
+    <string name="user_school">Current School</string>
+    <string name="user_state">State Of Origin</string>
+    <string name="user_phone">Phone</string>
+    <string name="user_gender">Gender</string>
+    <string name="user_subject">Subject</string>
+    <string name="user_message">Message</string>
+    <string name="user_register">Register</string>
+    <string name="user_login">Login</string>
+    <string name="user_password">Password</string>
+    <string name="user_confirm_password">Confirm Password</string>
+
+    <!--Error & Successful Messages-->
+    <string name="SUC_submission_successful">Submitted Successfully</string>
+    <string name="ERR_submission_failed">Submission Failed</string>
+    <string name="ERR_network_error">Network Error</string>
+
+</resources>
