@@ -5,12 +5,12 @@ public class IVCwallet {
 
     private void deduct(int amount){
         this.wallet_balance = this.wallet_balance - amount;
-        // change the server balance and the shared pref manger instance of wallet_balance
+        // change the server balance
     }
 
     private void deposit(int amount){
         this.wallet_balance = this.wallet_balance + amount;
-        // change the server balance and the shared pref manger instance of wallet_balance
+        // change the server balance
     }
 
     boolean isInsufficient(int amount){

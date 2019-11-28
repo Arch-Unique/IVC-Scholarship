@@ -1,5 +1,7 @@
 package com.osystems.ivcscholarship.IVCcontrollers;
 
+import android.content.Context;
+
 public class IVCuser {
 
     private String userName;
@@ -12,40 +14,16 @@ public class IVCuser {
     private String userGender;
     private String userSchool;
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public void setUserResidentialAddress(String userResidentialAddress) {
-        this.userResidentialAddress = userResidentialAddress;
-    }
-
-    public void setUserDOB(String userDOB) {
-        this.userDOB = userDOB;
-    }
-
-    public void setUserState(String userState) {
-        this.userState = userState;
-    }
-
-    public void setUserLGA(String userLGA) {
-        this.userLGA = userLGA;
-    }
-
-    public void setUserGender(String userGender) {
-        this.userGender = userGender;
-    }
-
-    public void setUserSchool(String userSchool) {
-        this.userSchool = userSchool;
+    IVCuser(Context context){
+        this.userName = IVCspm.getInstance(context).getKeyUser();
+        this.userEmail = IVCspm.getInstance(context).getKeyUserEmail();
+        this.userPhone = IVCspm.getInstance(context).getKeyUserPhone();
+        this.userDOB = IVCspm.getInstance(context).getKeyUserDob();
+        this.userResidentialAddress = IVCspm.getInstance(context).getKeyUserAddress();
+        this.userState = IVCspm.getInstance(context).getKeyUserState();
+        this.userLGA = IVCspm.getInstance(context).getKeyUserLga();
+        this.userGender = IVCspm.getInstance(context).getKeyUserGender();
+        this.userSchool = IVCspm.getInstance(context).getKeyUserSchool();
     }
 
     public String getUserName() {
