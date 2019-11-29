@@ -1,6 +1,7 @@
 package com.osystems.ivcscholarship.IVCcontrollers;
 
 public class IVCwallet {
+    //Do all calculations in the server
     private int wallet_balance;
 
     private void deduct(int amount){
