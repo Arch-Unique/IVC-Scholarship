@@ -79,5 +79,5 @@ public class EssayWCcontroller {
 
     String getEssayText() {
         return essayText;
-    }
+    } //Call only onSubmit
 }

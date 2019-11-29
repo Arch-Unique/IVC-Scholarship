@@ -1,5 +1,6 @@
 package com.osystems.ivcscholarship.EssayController;
 
+import android.content.Context;
 import android.widget.EditText;
 
 public class EssayConversion {
@@ -19,7 +20,7 @@ public class EssayConversion {
         return "\r\n\r\n";
     }
 
-    void convertEssay(){
-        new FileConv().saveFile(buildString());
+    void convertEssay(Context context, String username){
+        FileConv.saveFile(context, buildString(), username);
     }
 }

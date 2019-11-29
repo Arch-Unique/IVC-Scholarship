@@ -34,7 +34,7 @@ public class FileConv {
         return txt;
     }
 
-    void saveFile(String txt){
+    static void saveFile(Context context, String txt, String username){
         String filename = username + ".txt";
         FileOutputStream fOut;
         try {
@@ -75,7 +75,7 @@ public class FileConv {
             //Dont save the file
         }else{
             //save file
-            saveFile(convertTxt());
+            saveFile(context, convertTxt(), username);
         }
     }
 }

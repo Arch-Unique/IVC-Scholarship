@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
-public class IVCtimer {
+public class IVC {
 
     static void setTimer(long time,final TextView v){
         new CountDownTimer(time, 1000) {
