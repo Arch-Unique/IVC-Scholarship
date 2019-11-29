@@ -14,15 +14,15 @@ public class IVCwallet {
         // change the server balance
     }
 
-    boolean isInsufficient(int amount){
+    public boolean isInsufficient(int amount){
         return amount < wallet_balance;
     }
 
-    String getWallet_Balance(){
+    public String getWallet_Balance(){
         return this.wallet_balance + "";
     }
 
-    void updateBalance(boolean deposit, int amount){
+    public void updateBalance(boolean deposit, int amount){
         if(deposit){
             deposit(amount);
         }else{

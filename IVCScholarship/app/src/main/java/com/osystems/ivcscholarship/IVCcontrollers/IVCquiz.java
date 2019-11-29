@@ -5,13 +5,13 @@ public class IVCquiz {
     private int score;
     private int IVCquestionIndex;
 
-    void setIVCquiz(IVCquestions[] question){
+    public void setIVCquiz(IVCquestions[] question){
         this.score = 0;
         this.IVCquestionIndex = 0;
         this.question = question;
     }
 
-    boolean IVCquizEnded(){
+    public boolean IVCquizEnded(){
         return this.IVCquestionIndex == this.question.length;
     }
 
@@ -19,7 +19,7 @@ public class IVCquiz {
         return this.question[this.IVCquestionIndex];
     }
 
-    void checkChoices(String choice){
+    public void checkChoices(String choice){
         if(this.getIVCquestionIndex().isCorrectAnswer(choice)){
             score++;
         }

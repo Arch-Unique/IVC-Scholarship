@@ -26,25 +26,25 @@ public class FANRequest {
     private ProgressBar progressBar;
     private FANupload faNupload;
 
-    FANRequest(Context context, String Url, FANparams[] fparams){
+    public FANRequest(Context context, String Url, FANparams[] fparams){
         this.context = context;
         this.FAN_URL = Url;
         this.fparams = fparams;
     }
 
-    FANRequest(Context context, String Url, FANupload faNupload, FANparams[] faNparams){
+    public FANRequest(Context context, String Url, FANupload faNupload, FANparams[] faNparams){
         this.context = context;
         this.FAN_URL = Url;
         this.faNupload = faNupload;
         this.fparams = faNparams;
     }
 
-    void initialize(FANmethod type){
+    public void initialize(FANmethod type){
         AndroidNetworking.initialize(context);
         chooseMethod(type);
     }
 
-    void setProgressBar(ProgressBar progressBar) {
+    public void setProgressBar(ProgressBar progressBar) {
         this.progressBar = progressBar;
     }
 

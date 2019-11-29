@@ -5,7 +5,7 @@ public class IVCquestions {
     private String Questions, Answer;
     private String[] Choices;
 
-    void setIVCquestions(String Question, String[] choices, String Answer){
+    public void setIVCquestions(String Question, String[] choices, String Answer){
         this.Questions = Question;
         this.Choices = choices;
         this.Answer = Answer;

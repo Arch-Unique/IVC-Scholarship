@@ -3,6 +3,8 @@ package com.osystems.ivcscholarship.EssayController;
 import android.content.Context;
 import android.widget.EditText;
 
+import com.osystems.ivcscholarship.IVCcontrollers.IVC;
+
 public class EssayConversion {
     private String essayTextTitle;
     private String essayTextDescription;
@@ -21,6 +23,6 @@ public class EssayConversion {
     }
 
     void convertEssay(Context context, String username){
-        FileConv.saveFile(context, buildString(), username);
+        IVC.saveFile(context, buildString(), username);
     }
 }

@@ -13,13 +13,13 @@ public class EssayWCcontroller {
     private String essayText;
     private static final long MAX_WORDS = 500;
 
-    EssayWCcontroller(Context context, EditText essayText){
+    public EssayWCcontroller(Context context, EditText essayText){
         this.essayEditText = essayText;
         this.essayText = essayText.getText().toString();
         this.context = context;
     }
 
-    void checkWord(){
+    public void checkWord(){
         essayEditText.addTextChangedListener(textWatcher());
         essayEditText.setOnKeyListener(keyListener());
     }
@@ -77,7 +77,7 @@ public class EssayWCcontroller {
         };
     }
 
-    String getEssayText() {
+    public String getEssayText() {
         return essayText;
     } //Call only onSubmit
 }

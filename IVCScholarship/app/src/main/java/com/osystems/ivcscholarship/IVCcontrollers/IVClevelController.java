@@ -5,15 +5,15 @@ public class IVClevelController {
     private static final int MAX_LEVEL = 5;
     private int current_level;
 
-    void IVClevelController(){
+    public void IVClevelController(){
         this.current_level = 0;
     }
 
-    boolean confirmNextLevel(int score){
+    public boolean confirmNextLevel(int score){
         return score == AVERAGE_SCORE;
     }
 
-    void changeLevel(boolean yes){
+    public void changeLevel(boolean yes){
         if(yes){
             if(isMaxLevel()){
                 current_level = -1; //the level transitions to theory based questions

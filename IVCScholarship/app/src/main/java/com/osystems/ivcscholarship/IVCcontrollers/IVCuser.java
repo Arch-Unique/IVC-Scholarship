@@ -14,7 +14,7 @@ public class IVCuser {
     private String userGender;
     private String userSchool;
 
-    IVCuser(Context context){
+    public IVCuser(Context context){
         this.userName = IVCspm.getInstance(context).getKeyUser();
         this.userEmail = IVCspm.getInstance(context).getKeyUserEmail();
         this.userPhone = IVCspm.getInstance(context).getKeyUserPhone();
