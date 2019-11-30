@@ -15,18 +15,22 @@ public class IVCquiz {
         return this.IVCquestionIndex == this.question.length;
     }
 
-    private IVCquestions getIVCquestionIndex(){
+    public IVCquestions getIVCquestionIndex(){
         return this.question[this.IVCquestionIndex];
     }
 
     public void checkChoices(String choice){
-        if(this.getIVCquestionIndex().isCorrectAnswer(choice)){
-            score++;
-        }
+        if(choice.isEmpty() || choice == null){
+            IVCquestionIndex++;
+        }else {
+            if (this.getIVCquestionIndex().isCorrectAnswer(choice)) {
+                score++;
+            }
 //        else{
 //            score--;
 //        } //Enables Negative Marking
-        IVCquestionIndex++;
+            IVCquestionIndex++;
+        }
     }
 
     public int getScore() {

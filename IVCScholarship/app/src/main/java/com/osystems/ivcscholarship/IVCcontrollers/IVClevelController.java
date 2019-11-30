@@ -3,11 +3,9 @@ package com.osystems.ivcscholarship.IVCcontrollers;
 public class IVClevelController {
     private static final int AVERAGE_SCORE = 7;
     private static final int MAX_LEVEL = 5;
-    private int current_level;
+    private int current_level = 0;
 
-    public void IVClevelController(){
-        this.current_level = 0;
-    }
+    public IVClevelController(){}
 
     public boolean confirmNextLevel(int score){
         return score == AVERAGE_SCORE;
