@@ -1,30 +1,31 @@
 package com.osystems.ivcscholarship.IVCcontrollers;
 
 import android.content.Context;
-import android.os.CountDownTimer;
-import android.util.ArrayMap;
-import android.util.ArraySet;
-import android.widget.TextView;
+import android.content.Intent;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.ConnectionQuality;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.osystems.ivcscholarship.QuizActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class IVC {
+
+    private static ArrayList<IVCgetQuiz> gQuiz;
+
     public static void saveFile(Context context, String txt, String username){
         String filename = username + ".txt";
         FileOutputStream fOut;
@@ -40,7 +41,7 @@ public class IVC {
         }
     }
 
-    public static ArrayList<IVCgetQuiz> storeQuiz(JSONObject jsonObject){
+    private static ArrayList<IVCgetQuiz> storeQuiz(JSONObject jsonObject){
             JSONArray jsonArray;
             JSONObject innerJsonObject;
             String ans, ques;
@@ -72,6 +73,40 @@ public class IVC {
             }
         }
         return choice;
+    }
+
+    public static ArrayList<IVCgetQuiz> getQuizServer(String level){
+
+        AndroidNetworking.setConnectionQualityChangeListener(new ConnectionQualityChangeListener() {
+            @Override
+            public void onChange(ConnectionQuality currentConnectionQuality, int currentBandwidth) {
+                if(currentConnectionQuality == ConnectionQuality.UNKNOWN){
+                    //cancel request
+                    AndroidNetworking.forceCancelAll();
+                    //toast a network connection error message
+                }
+            }
+        });
+        AndroidNetworking.post("url") //put URL
+        .addBodyParameter("level", level)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        gQuiz = storeQuiz(response);
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        //report error
+                    }
+                });
+        return gQuiz;
+    }
+
+    public static void initGetQuizServer(Context context){
+        context.startActivity(new Intent(context, QuizActivity.class).putExtra("getquizTag", getQuizServer("0")));
     }
 
 

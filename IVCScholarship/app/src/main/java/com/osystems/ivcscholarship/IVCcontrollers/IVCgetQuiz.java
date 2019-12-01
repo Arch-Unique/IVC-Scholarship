@@ -1,6 +1,9 @@
 package com.osystems.ivcscholarship.IVCcontrollers;
 
-public class IVCgetQuiz {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class IVCgetQuiz implements Parcelable {
     private String ans, question;
     private String[] choice;
 
@@ -9,6 +12,24 @@ public class IVCgetQuiz {
         this.question = question;
         this.choice = choice;
     }
+
+    protected IVCgetQuiz(Parcel in) {
+        ans = in.readString();
+        question = in.readString();
+        choice = in.createStringArray();
+    }
+
+    public static final Creator<IVCgetQuiz> CREATOR = new Creator<IVCgetQuiz>() {
+        @Override
+        public IVCgetQuiz createFromParcel(Parcel in) {
+            return new IVCgetQuiz(in);
+        }
+
+        @Override
+        public IVCgetQuiz[] newArray(int size) {
+            return new IVCgetQuiz[size];
+        }
+    };
 
     public String getAns() {
         return ans;
@@ -20,5 +41,17 @@ public class IVCgetQuiz {
 
     public String[] getChoices() {
         return choice;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(ans);
+        parcel.writeString(question);
+        parcel.writeStringArray(choice);
     }
 }

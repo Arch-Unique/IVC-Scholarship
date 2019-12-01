@@ -26,6 +26,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        ilc = new IVClevelController();
         init();
         initQuestions();
         populate();
@@ -33,14 +34,16 @@ public class QuizActivity extends AppCompatActivity {
 
     private void init(){
         //declarations goes here
-
-        ilc = new IVClevelController();
         ivCquiz = new IVCquiz();
         ivCquestions = new IVCquestions[getQuestions().size()];
     }
 
-    private ArrayList<? extends IVCgetQuiz> getQuestions(){
-        return getIntent().getParcelableArrayListExtra("getquizTag");
+    private ArrayList<IVCgetQuiz> getQuestions(){
+        if(ilc.getCurrent_level() == 0){
+            return getIntent().getParcelableExtra("getquizTag");
+        }else{
+            return setNextLevel();
+        }
     }
 
     private void initQuestions(){
@@ -116,16 +119,24 @@ public class QuizActivity extends AppCompatActivity {
     - get the total score by doing some calculations with the time - beta
     - save score , currentLevel, total time used to finish, username etc  in the server
 
-    For il.changeLevel()
+    For ilc.changeLevel()
     - if the total score > AVERAGE_SCORE ,
     - (Check for hacks >> compare currentLevel in the server with currentLevel(here) + 1
     - to see if it gives a diff of 1)
     - the method changeLevel with args[yes]
     - would be called else args[no] which will reset the current level to 0
 
-    Finally call the method to receive the questions based on the current level
-    - has to be static
-
      */
+
+    private ArrayList<IVCgetQuiz> setNextLevel(){
+        String level = ilc.getCurrent_level()+ "";
+        return IVC.getQuizServer(level);
+    }
+
+    private void initializeNextLevel(){
+        init();
+        initQuestions();
+        populate();
+    }
 
 }
