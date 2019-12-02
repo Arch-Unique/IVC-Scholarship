@@ -11,12 +11,16 @@ import com.osystems.ivcscholarship.IVCcontrollers.IVCgetQuiz;
 import com.osystems.ivcscholarship.IVCcontrollers.IVClevelController;
 import com.osystems.ivcscholarship.IVCcontrollers.IVCquestions;
 import com.osystems.ivcscholarship.IVCcontrollers.IVCquiz;
+import com.osystems.ivcscholarship.IVCcontrollers.IVCtheory;
+import com.osystems.ivcscholarship.IVCcontrollers.IVCtheoryQuiz;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
     IVClevelController ilc;
+    IVCtheory[] ith;
+    IVCtheoryQuiz ivCtheoryQuiz;
     IVCquestions[] ivCquestions;
     IVCquiz ivCquiz;
     private String ques, ans;
@@ -137,6 +141,34 @@ public class QuizActivity extends AppCompatActivity {
         init();
         initQuestions();
         populate();
+    }
+
+    private void initializeTheoryLevel(String level){
+        ivCtheoryQuiz = new IVCtheoryQuiz();
+        ith = new IVCtheory[IVC.getTheoryServer(level).size()];
+        for (int i = 0; i < ith.length; i++) {
+            ith[i] = new IVCtheory();
+            ques = IVC.getTheoryServer(level).get(i);
+            ith[i].setQuestion(ques);
+        }
+        ivCtheoryQuiz.setIVCtheoryQuiz(ith);
+        populateTheory();
+    }
+
+    private void populateTheory(){
+        if(ivCtheoryQuiz.IVCtheoryQuizEnded()){
+            //TODO showScore() (next level function)
+        }else{
+            //show questions
+            // TextView.setText(ivCtheoryQuiz.getIVCtheoryQuestionIndex().getQuestion(););
+            // setTimer();
+
+            //TODO showProgress();
+        }
+    }
+
+    public void nextTheory(View v){
+        populateTheory();
     }
 
 }

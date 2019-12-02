@@ -25,6 +25,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class IVC {
 
     private static ArrayList<IVCgetQuiz> gQuiz;
+    private static ArrayList<String> allQuestion;
 
     public static void saveFile(Context context, String txt, String username){
         String filename = username + ".txt";
@@ -109,5 +110,48 @@ public class IVC {
         context.startActivity(new Intent(context, QuizActivity.class).putExtra("getquizTag", getQuizServer("0")));
     }
 
+    public static  ArrayList<String>  getTheoryServer(String level){
+
+        AndroidNetworking.setConnectionQualityChangeListener(new ConnectionQualityChangeListener() {
+            @Override
+            public void onChange(ConnectionQuality currentConnectionQuality, int currentBandwidth) {
+                if(currentConnectionQuality == ConnectionQuality.UNKNOWN){
+                    //cancel request
+                    AndroidNetworking.forceCancelAll();
+                    //toast a network connection error message
+                }
+            }
+        });
+        AndroidNetworking.post("url") //put URL
+                .addBodyParameter("level", level)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        JSONArray jsonArray;
+                        JSONObject innerJsonObject;
+                        String Question;
+                        allQuestion = new ArrayList<>();
+                        try {
+                            jsonArray = response.getJSONArray("example");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                innerJsonObject = jsonArray.getJSONObject(i);
+                                Question = innerJsonObject.getString("Question");
+                                allQuestion.add(Question);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        //report error
+                    }
+                });
+        return allQuestion;
+    }
 
 }
