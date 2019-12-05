@@ -81,7 +81,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void guess(View v, final String choice){
-        if(choice.isEmpty() || v == null || choice == null){
+        if(choice == null || choice.isEmpty() || v == null){
             nextQuestion(choice);
         }else {
             v.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +111,6 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 guess(null, null);
-                //put function here
             }
         }.start();
     }

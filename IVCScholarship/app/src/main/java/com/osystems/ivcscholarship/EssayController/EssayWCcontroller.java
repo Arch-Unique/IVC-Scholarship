@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EssayWCcontroller {
     private EditText essayEditText;
@@ -54,6 +55,7 @@ public class EssayWCcontroller {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(isMaxWords(wordCount(charSequence.toString()))){
                     //stop editing
+                    Toast.makeText(context, "Maximum Input Reached",Toast.LENGTH_LONG).show();
                 }
             }
 
